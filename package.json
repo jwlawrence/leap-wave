@@ -1,0 +1,16 @@
+{
+  "name": "leap-wave",
+  "version": "0.0.1",
+  "description": "Experiments with Leap Motion controller",
+  "main": "leap.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh Lawrence <lawrencejw@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cylon": "^0.18.0",
+    "cylon-leapmotion": "^0.12.0",
+    "twit": "^1.1.18"
+  }
+}
