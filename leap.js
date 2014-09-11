@@ -1,6 +1,15 @@
-var events = require('events');
+var config       = require('./config.json');
+var events       = require('events');
 var eventEmitter = new events.EventEmitter();
-var Cylon = require('cylon');
+var Twit         = require('twit');
+var Cylon        = require('cylon');
+
+var twitter = new Twit({
+	consumer_key: config.twitter.consumer_key,
+	consumer_secret: config.twitter.consumer_secret,
+	access_token: config.twitter.access_token,
+	access_token_secret: config.twitter.access_token_secret
+});
 
 Cylon.robot({
 	connection: {
@@ -69,9 +78,15 @@ Cylon.robot({
 		});
 
 		function sayHi() {
-			paused = true;
 			console.log('hi there!');
+			twitter.post('statuses/update', { status: 'hello there!' }, function(err, data, response) {
+				if ( err ) {
+					console.log(err);
+				}
+				console.log(data);
+			});
 
+			paused = true;
 			setTimeout(function() {
 				paused = false;
 			}, 2000);
